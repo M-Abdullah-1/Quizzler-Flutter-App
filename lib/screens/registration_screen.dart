@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:qs_app/components/rounded_button.dart';
+import 'package:qs_app/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:qs_app/main2.dart';
+// import 'package:qs_app/screens/chat_screen.dart';
+
+class RegistrationScreen extends StatefulWidget {
+  static String id = 'registration_screen';
+  @override
+  _RegistrationScreenState createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _auth = FirebaseAuth.instance;
+  bool showSpinner = false;
+  String email;
+  String password;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: ModalProgressHUD(
+        inAsyncCall: showSpinner,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              // Container(
+              //   height: 200.0,
+              //   child: Image.asset('images/logo.png'),
+              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  // Container(
+                  //   child: Image.asset('images/logo.png'),
+                  //   height: 60.0,
+                  // ),
+                  Container(
+
+                    child: Text(
+                      'Quizzler',
+                      style: TextStyle(
+                        fontSize: 60.0,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.lightBlue,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 48.0,
+              ),
+              TextField(
+                onChanged: (value) {
+                  email = value;
+                },
+                decoration: kTextFieldDecoration.copyWith(hintText: 'Enter Your Email'),
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              TextField(
+                obscureText: true,
+                onChanged: (value) {
+                  password = value;
+                },
+                decoration: kTextFieldDecoration.copyWith(hintText: 'Enter Your Password'),
+              ),
+              SizedBox(
+                height: 24.0,
+              ),
+              RoundedButton(
+                title: 'Register',
+                colour: Colors.blueAccent,
+                onPressed: () async{
+                  setState(() {
+                    showSpinner = true;
+                  });
+                  try {
+                    final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                    if (newUser != null) {
+                      Navigator.pushNamed(context, Main2.id);
+                    }
+                    setState(() {
+                      showSpinner = false;
+                    });
+                  } catch (e) {
+                    print(e);
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

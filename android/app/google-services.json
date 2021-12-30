@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "249945951947",
+    "project_id": "qs-app-6ed97",
+    "storage_bucket": "qs-app-6ed97.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249945951947:android:3b2213a405b824049cd54e",
+        "android_client_info": {
+          "package_name": "com.adil.qs_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249945951947-cidl3seo9hn8bpp61ksm0aeh55np20rg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChRoJ4UHGEmO35dFgJVXq3r0EsCdfv7IA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249945951947-cidl3seo9hn8bpp61ksm0aeh55np20rg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
